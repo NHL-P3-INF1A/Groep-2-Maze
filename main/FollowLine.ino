@@ -1,5 +1,5 @@
 void followLine(){
-  if(analogRead(LineSensor1) > BlackValue || analogRead(LineSensor2) > BlackValue){
+  if(analogRead(IR_SENSORS[0]) > BlackValue || analogRead(IR_SENSORS[1]) > BlackValue){
     motorStop();
     delay(50);
     motorForward(255);
@@ -7,7 +7,7 @@ void followLine(){
     //Turn Right
     for(int i = 0; i < 800; i++){
       motorTurnRight(180);
-      if(analogRead(LineSensor6) < BlackValue){
+      if(analogRead(IR_SENSORS[5]) < BlackValue){
         break;
       }
       delay(1);
@@ -15,14 +15,14 @@ void followLine(){
     delay(100);
     for(int i = 0; i < 800; i++){
       motorTurnRight(180);
-      if(analogRead(LineSensor6) > BlackValue){
+      if(analogRead(IR_SENSORS[5]) > BlackValue){
         break;
       }
       delay(1);
     }
     motorStop();
   } 
-  else if(analogRead(LineSensor6) > BlackValue || analogRead(LineSensor5) > BlackValue || analogRead(LineSensor4) > BlackValue|| analogRead(LineSensor7) > BlackValue)
+  else if(analogRead(IR_SENSORS[5]) > BlackValue || analogRead(IR_SENSORS[4]) > BlackValue || analogRead(IR_SENSORS[3]) > BlackValue|| analogRead(IR_SENSORS[6]) > BlackValue)
   {
     motorForward(255);
   } 
@@ -39,8 +39,8 @@ void checkBothSides(){
     
    //check Right
    for(int i = 0; i < 400; i++){
-     motorTurnRight(190);
-     if(analogRead(LineSensor5) > BlackValue){
+     motorTurnRight(100);
+     if(analogRead(IR_SENSORS[4]) > BlackValue){
        colorDetected = true;
        break;
      }
@@ -53,7 +53,7 @@ void checkBothSides(){
    if(!colorDetected){
      for(int i = 0; i < 900; i++){
        motorTurnLeft(190);
-       if(analogRead(LineSensor5) > BlackValue){
+       if(analogRead(IR_SENSORS[4]) > BlackValue){
          colorDetected = true;
          break;
        }
@@ -63,7 +63,7 @@ void checkBothSides(){
    if(!colorDetected){
     while(colorDetected){
        motorTurnLeft(190);
-       if(analogRead(LineSensor6) > BlackValue || analogRead(LineSensor5) > BlackValue){
+       if(analogRead(IR_SENSORS[5]) > BlackValue || analogRead(IR_SENSORS[4]) > BlackValue){
          colorDetected = true;
          break;
        }
@@ -72,4 +72,3 @@ void checkBothSides(){
    }
    motorStop();
 }
-

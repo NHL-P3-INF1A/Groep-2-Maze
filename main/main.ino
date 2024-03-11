@@ -14,15 +14,20 @@ const int motorB1 = 10;
 const int motorB2 = 11;
 const int motorB2_afwijking = 2;
 
-const int LineSensor1 = A5;
-const int LineSensor2 = A4;
-const int LineSensor4 = A3;
-const int LineSensor5 = A2;
-const int LineSensor6 = A1;
-const int LineSensor7 = A0;
+// const int LineSensor1 = A5;
+// const int LineSensor2 = A4;
+// const int LineSensor3 = A6;
+// const int LineSensor4 = A3;
+// const int LineSensor5 = A2; 
+// const int LineSensor6 = A1;
+// const int LineSensor7 = A0;
+// const int LineSensor8 = A7;
 
-const int AFSTAND_ECHO = 8;
-const int AFSTAND_TRIGGER = 2;
+// From left to right when looking from the back
+const int IR_SENSORS[] = {A1, A7, A0, A2, A3, A6, A4, A5};
+
+// const int AFSTAND_ECHO = 8;
+// const int AFSTAND_TRIGGER = 2;
 
 const int BlackValue = 850;
 
@@ -39,17 +44,18 @@ void setup() {
   pinMode(motorA2, OUTPUT);
   pinMode(motorB1, OUTPUT);
   pinMode(motorB2, OUTPUT);
-  pinMode(AFSTAND_ECHO, INPUT);
-  pinMode(AFSTAND_TRIGGER, OUTPUT);
+  // pinMode(AFSTAND_ECHO, INPUT);
+  // pinMode(AFSTAND_TRIGGER, OUTPUT);
 
   pixels.begin();
   frontLights();
-  
-
+// Start();
 }
 
 void loop() {
   followLine();
+  
+
 }
 
 
