@@ -1,6 +1,7 @@
 void start() {
   // Start moving forward
   motorForward(170);
+  Serial.println("Dit is start"); 
 
   // Wait until all sensors detect black (outline of parking lot)
   while (!(analogRead(IR_SENSORS[0]) > BlackValue && analogRead(IR_SENSORS[1]) > BlackValue && analogRead(IR_SENSORS[3]) > BlackValue && analogRead(IR_SENSORS[4]) > BlackValue && analogRead(IR_SENSORS[5]) > BlackValue && analogRead(IR_SENSORS[6]) > BlackValue)) {}
@@ -14,7 +15,7 @@ void start() {
   // Wait until all sensors detect white
   while (!(analogRead(IR_SENSORS[0]) < BlackValue && analogRead(IR_SENSORS[1]) < BlackValue && analogRead(IR_SENSORS[3]) < BlackValue && analogRead(IR_SENSORS[4]) < BlackValue && analogRead(IR_SENSORS[5]) < BlackValue && analogRead(IR_SENSORS[6]) < BlackValue)) {}
 
-  // Wait until all sensors detect black again
+  // Wait until all sensors detect black againx
   while (!(analogRead(IR_SENSORS[0]) > BlackValue && analogRead(IR_SENSORS[1]) > BlackValue && analogRead(IR_SENSORS[3]) > BlackValue && analogRead(IR_SENSORS[4]) > BlackValue && analogRead(IR_SENSORS[5]) > BlackValue && analogRead(IR_SENSORS[6]) > BlackValue)) {}
 
   // Wait until only the middle two sensors detect white (vertical black line)
@@ -48,7 +49,7 @@ void start() {
 
 
   // Follow the line
-  while (true) {
-    followLine();
-  }
+  // while (true) {
+  //   followLine();
+  // }
 }

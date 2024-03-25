@@ -29,6 +29,8 @@ unsigned long timerGripper = 0;
 
 void setup() {
   Serial.begin(9600); // Start de serial monitor
+    Serial.println("hoi"); 
+
   pinMode(MOTOR_SERVO, OUTPUT);
   pinMode(motorA1, OUTPUT);
   pinMode(motorA2, OUTPUT);
@@ -40,15 +42,10 @@ void setup() {
 
   pixels.begin(); // Start de NeoPixel LED's
   frontLights();  // Zet de voorlichten aan 
+  start();
 }
 void loop() {
-getDistanceCM();
-
-if(getDistanceCM() < 25){
-  start();
-} else {
-  motorStop();
-}
+  followLine();
 }
 
 
