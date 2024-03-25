@@ -3,10 +3,10 @@
 // NeoPixel setup
 #define NEOPIXEL_PIN     4  // Pin die verbonden is met de NeoPixels
 #define NUMPIXELS        4  // Aantal NeoPixels
+#define   MOTOR_SERVO           6   // Servo for front gripper
 
 Adafruit_NeoPixel pixels(NUMPIXELS, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
-const int MOTOR_SERVO = 6;
 
 const int motorA1 = 9; 
 const int motorA2 = 3;
@@ -23,13 +23,13 @@ const int BlackValue = 850;  // Drempelwaarde voor zwartdetectie door de lijnsen
 
 float duration_us;
 
-bool SERVO_CLOSED = false;
 
 unsigned long timerGripper = 0;
 
 void setup() {
   Serial.begin(9600); // Start de serial monitor
     Serial.println("hoi"); 
+
 
   pinMode(MOTOR_SERVO, OUTPUT);
   pinMode(motorA1, OUTPUT);
@@ -42,10 +42,17 @@ void setup() {
 
   pixels.begin(); // Start de NeoPixel LED's
   frontLights();  // Zet de voorlichten aan 
+  getDistanceCM();
+  while(getDistanceCM() > 25)
+  {
+    motorStop();
+  }
+
   start();
 }
 void loop() {
   followLine();
+
 }
 
 
